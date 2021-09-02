@@ -12,6 +12,11 @@ import {HeroesComponent} from './heroes/heroes.component'
 import {MessagesComponent} from './messages/messages.component'
 import {InMemoryDataService} from './in-memory-data.service'
 import { HeroSearchComponent } from './hero-search/hero-search.component'
+import { StoreModule } from '@ngrx/store'
+import { counterReducer } from './store/counter.reducer'
+import { MyCounterComponent } from './my-counter/my-counter.component'
+import { environment } from 'src/environments/environment'
+
 
 @NgModule({
   declarations: [
@@ -20,7 +25,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component'
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    MyCounterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +36,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component'
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    StoreModule.forRoot({count: counterReducer}),
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
